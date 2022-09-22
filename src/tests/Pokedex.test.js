@@ -41,12 +41,21 @@ test('Teste se a Pokédex tem os botões de filtro:', () => {
   const number = 7;
 
   expect(filterButton.length).toBe(number);
+  expect(filterButton[0]).toHaveTextContent(/Electric/i);
+  expect(filterButton[1]).toHaveTextContent(/Fire/i);
+  expect(filterButton[2]).toHaveTextContent(/Bug/i);
+  expect(filterButton[3]).toHaveTextContent(/Poison/i);
+  expect(filterButton[4]).toHaveTextContent(/Psychic/i);
+  expect(filterButton[5]).toHaveTextContent(/Normal/i);
+  expect(filterButton[6]).toHaveTextContent(/Dragon/i);
 });
 
 test('Teste se a Pokédex contém um botão para resetar o filtro', () => {
   renderWithRouter(<App />);
 
   const resetButton = screen.getByRole('button', { name: /all/i });
+
+  userEvent.click(resetButton);
 
   expect(resetButton).toBeInTheDocument();
 });
